@@ -1,0 +1,14 @@
+Comando inicial crea package.json dependencias
+npm init -y
+
+npm i express express-handlebars mongoose morgan
+
+github no necesita de node_modules
+
+babel = permite compilar codigo js antiguo async await import
+npm i -D @babel/core @babel/cli @babel/node @babel/preset-env nodemon
+
+
+handlebars es un tipo de plantillas que usa node 
+para mostrar paginas html, le colocamos .hbs
+
