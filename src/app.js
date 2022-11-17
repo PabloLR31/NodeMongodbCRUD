@@ -6,6 +6,7 @@ import express from "express";
 import morgan from "morgan";
 import indexRoutes from "./routes/index.routes";
 import { create } from "express-handlebars";
+import morgan from 'morgan';
 
 const app = express();
 
@@ -27,6 +28,10 @@ app.engine(
 );
 // Avisamos del uso de handlebars
 app.set("view engine", ".hbs");
+
+// middlewares
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false }));
 
 // Utilizamos las rutas creadas en routes/index.routes
 app.use(indexRoutes);
