@@ -3,7 +3,6 @@
 // npx babel-node src/index.js
 import path from "path";
 import express from "express";
-import morgan from "morgan";
 import indexRoutes from "./routes/index.routes";
 import { create } from "express-handlebars";
 import morgan from 'morgan';
