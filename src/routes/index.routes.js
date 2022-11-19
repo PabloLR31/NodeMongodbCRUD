@@ -5,18 +5,22 @@ import Task from '../models/Task';
 const router = Router();
 
 router.get("/", async (req, res) => {
-    const tasks = await Task.find();
+    const tasks = await Task.find().lean();
 
     res.render("index", { tasks: tasks });
 });
 
 router.post("/tasks/add", async (req, res) => {
-    const task = Task(req.body);
+    try {
+        const task = Task(req.body);
 
-    // Añadir a mongodb
-    await task.save();
-    
-    res.redirect("/");
+        // Añadir a mongodb
+        await task.save();
+        
+        res.redirect("/");
+    } catch(error) {
+        console.log(error);
+    }
 });
 
 router.get("/about", (req, res) => {
