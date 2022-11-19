@@ -27,8 +27,30 @@ router.get("/about", (req, res) => {
     res.render('about');
 });
 
-router.get("/edit", (req, res) => {
-    res.render('edit');
+router.get("/edit/:id", async (req, res) => {
+    try {
+        const task = await Task.findById(req.params.id).lean();
+        res.render('edit', { task: task } );
+    } catch(error) {
+
+    }
+});
+
+router.post('/edit/:id', async (req, res) => {
+
+    const { id } = req.params;
+
+    await Task.findByIdAndUpdate(id, req.body);
+
+    res.send('/');
+});
+
+router.post('/delete/:id', async (req, res) => {
+    const { id } = req.params;
+
+    await Task.findByIdAndRemove(id);
+
+    res.send('/');
 });
 
 export default router;
